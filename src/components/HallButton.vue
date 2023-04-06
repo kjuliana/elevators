@@ -1,5 +1,8 @@
 <template>
-  <button class="button">
+  <button
+      class="button"
+      @click="addFloor"
+  >
     {{number}}
   </button>
 </template>
@@ -9,6 +12,11 @@ export default {
   name: "HallButton",
   props: {
     number: {
+    }
+  },
+  methods: {
+    addFloor () {
+      this.$emit('addFloor', this.number)
     }
   }
 }

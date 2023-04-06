@@ -1,7 +1,7 @@
 <template>
   <div class="shaft">
     <elevator-floor v-for="n in floorCount"/>
-    <elevator-car/>
+    <elevator-car :current-floor="currentFloor"/>
   </div>
 </template>
 
@@ -12,13 +12,14 @@ import ElevatorCar from "./ElevatorCar.vue";
 export default {
   name: "ElevatorShaft",
   components: {
-    ElevatorFloor, ElevatorCar
+    ElevatorFloor,
+    ElevatorCar
   },
   props: {
-    floorCount: {
-
-    }
+      floorCount:{},
+      currentFloor:{}
   }
+
 }
 </script>
 

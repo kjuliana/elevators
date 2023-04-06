@@ -1,10 +1,13 @@
 <template>
-  <div class="car"></div>
+  <div :style="'bottom:' + (currentFloor - 1)*151 + 'px'" class="car"></div>
 </template>
 
 <script>
 export default {
-  name: "ElevatorCar"
+  name: "ElevatorCar",
+  props: {
+    currentFloor:{}
+  }
 }
 </script>
 
@@ -15,5 +18,6 @@ export default {
     width: 100%;
     height: 151px;
     background-color: #0097a7;
+    transition: bottom 3s ease-in-out;
   }
 </style>

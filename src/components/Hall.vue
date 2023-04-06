@@ -1,7 +1,7 @@
 <template>
   <div class="hall">
     <div class="hall-floor" v-for="n in floorCount">
-        <hall-button :number="n" />
+        <hall-button :number="n" @addFloor="addFloor" />
     </div>
   </div>
 </template>
@@ -17,6 +17,11 @@ export default {
   props: {
     floorCount: {
 
+    }
+  },
+  methods: {
+    addFloor (number) {
+      this.$emit('addFloor', number)
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="app">
-    <elevator-shaft :floor-count="params.floorCount"/>
-    <hall :floor-count="params.floorCount"/>
+    <elevator-shaft :floor-count="floorCount" :current-floor="currentFloor"/>
+    <hall :floor-count="floorCount" @addFloor="addFloor"/>
   </div>
 </template>
 
@@ -16,15 +16,15 @@ export default {
   },
   data () {
     return {
-      params: {
-        floorCount: 5,
-        elevatorCount: 1,
-      },
+      floorCount: 5,
+      elevatorCount: 1,
       currentFloor: 1
     }
   },
   methods: {
-
+    addFloor (number) {
+      this.currentFloor = number;
+    }
   }
 }
 
