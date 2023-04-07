@@ -1,7 +1,7 @@
 <template>
   <div class="hall">
     <div class="hall-floor" v-for="n in floorCount">
-        <hall-button :number="n" @addFloor="addFloor" />
+        <hall-button :number="n" :is-waiting="queue.includes(n)" @addFloor="addFloor" />
     </div>
   </div>
 </template>
@@ -14,10 +14,12 @@ export default {
   components: {
     HallButton
   },
-  props: {
-    floorCount: {
+  data () {
 
-    }
+  },
+  props: {
+    floorCount: {},
+    queue: {}
   },
   methods: {
     addFloor (number) {

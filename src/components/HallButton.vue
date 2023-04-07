@@ -1,6 +1,7 @@
 <template>
   <button
       class="button"
+      :class="{'button-active' : isWaiting}"
       @click="addFloor"
   >
     {{number}}
@@ -10,9 +11,15 @@
 <script>
 export default {
   name: "HallButton",
-  props: {
-    number: {
+  data () {
+    return {
     }
+  },
+  props: {
+    number:{
+      type: Number
+    },
+    isWaiting:{}
   },
   methods: {
     addFloor () {
@@ -29,4 +36,8 @@ export default {
     height: 20px;
     border-radius: 50%;
   }
+  .button-active {
+    border: 1px solid orangered;
+  }
+
 </style>
