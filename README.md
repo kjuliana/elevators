@@ -1,5 +1,5 @@
 
-#Тестовое задание Elevator emulation
+# Тестовое задание Elevator emulation
 
 Vue-приложение эмуляции лифта.
 
