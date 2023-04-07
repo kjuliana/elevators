@@ -4,7 +4,12 @@
       class="car"
       :class="{'car-resting' : isResting}"
   >
-    {{nextFloor !== currentFloor ? nextFloor : ''}}
+    <div
+        class="indicator"
+        v-if="nextFloor !== currentFloor && !isResting"
+    >
+      {{nextFloor + ' ' + (currentFloor - nextFloor > 0 ? '⬇️' : '⬆️')}}
+    </div>
   </div>
 </template>
 
@@ -13,7 +18,6 @@ export default {
   name: "ElevatorCar",
   data () {
     return {
-
     }
   },
   props: {
@@ -35,9 +39,15 @@ export default {
     height: 151px;
     background-color: #0097a7;
     transition: bottom 3s ease-in-out;
+    display: flex;
+    justify-content: center;
   }
 
   .car-resting {
-    background-color: orange;
+    background-color: rgba(0, 151, 167, 0.52);
+  }
+
+  .indicator {
+    color: white;
   }
 </style>

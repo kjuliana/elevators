@@ -4,6 +4,7 @@
         <hall-button
             :number="n"
             :is-waiting="queue.includes(n) || (n === nextFloor && n !== currentFloor)"
+            :next-floor="nextFloor"
             @addFloor="addFloor"
         />
     </div>

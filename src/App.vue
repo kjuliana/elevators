@@ -27,7 +27,7 @@ export default {
   },
   data () {
     return {
-      floorCount: 7,
+      floorCount: 5,
       elevatorCount: 1,
       currentFloor: 1,
       queue: [],

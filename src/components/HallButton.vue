@@ -1,7 +1,7 @@
 <template>
   <button
       class="button"
-      :class="{'button-active' : isWaiting}"
+      :class="{'button-waiting' : isWaiting, 'button-active': isWaiting && number === nextFloor}"
       @click="addFloor"
   >
     {{number}}
@@ -16,10 +16,9 @@ export default {
     }
   },
   props: {
-    number:{
-      type: Number
-    },
-    isWaiting:{}
+    number: Number,
+    isWaiting: Boolean,
+    nextFloor: Number
   },
   methods: {
     addFloor () {
@@ -31,13 +30,20 @@ export default {
 
 <style scoped>
   .button {
-    border: 1px solid #0097a7;
-    width: 20px;
-    height: 20px;
+    border: none;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
+    color: white;
+    background-color: #0097a7;
   }
+
+  .button-waiting {
+    background-color: rgba(0, 151, 167, 0.5);
+  }
+
   .button-active {
-    border: 1px solid orangered;
+    background-color: rgba(0, 151, 167, 0.15);
   }
 
 </style>
