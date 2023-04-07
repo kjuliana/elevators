@@ -1,40 +1,40 @@
-# .
 
-This template should help get you started developing with Vue 3 in Vite.
+#Тестовое задание Elevator emulation
 
-## Recommended IDE Setup
+Vue-приложение эмуляции лифта.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+https://true-elevators.vercel.app
 
-## Type Support for `.vue` Imports in TS
+TypeScript · Vue
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Описание задания
+При нажатии на кнопку вызова лифт должен обработать этот вызов в
+  соответствии со следующими сценариями:
+* Если вызов осуществляется с этажа, на котором лифта нет – свободный
+   лифт начинает движение к выбранному этажу со скоростью 1 этаж в
+   секунду.
+   Достигнув нужного этажа лифт 3 секунды «отдыхает» - индикацию этого
+   состояния можно реализовать с помощью мигания.
+   После этого лифт снова переходит в состояние покоя и готов обработать
+   следующий вызов.
+* Если в момент движения лифта осуществить вызов на другой этаж – этот
+   вызов должен добавиться в очередь вызовов.
+   Вызовы должны обрабатываться последовательно.
+* Вызов пропускается в случаях, если:
+  * лифт уже находится на выбранном этаже в состоянии покоя
+  * лифт уже находится в процессе обработки такого вызова (находится в
+    движении к выбранному этажу)
+  * в очереди вызовов уже есть выбранный этаж
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+Также необходимо реализовать дополнительную обвязку, состоящую из
+    следующих задач:
+* Добавить табло индикации на кабину лифта, на котором в процессе
+   движения будет отображаться направление движения и целевой этаж.
+* Добавить индикацию кнопок вызова на этажах (например, смену цвета) в
+   случае, если:
+  * лифт уже находится в процессе обработки такого вызова (находится в
+    движении к выбранному этажу)
+  * в очереди вызовов уже есть выбранный этаж
+* Добавить сохранение состояния приложения (позиция лифта, очередь
+   вызовов и т.д.) при перезагрузке страницы – после перезагрузки
+   приложение должно возобновить работу с сохраненного состояния.
