@@ -5,7 +5,13 @@
         :current-floor="currentFloor"
         :next-floor="nextFloor"
     />
-    <hall :floor-count="floorCount" :queue="queue" @addFloor="addFloor"/>
+    <hall
+        :floor-count="floorCount"
+        :queue="queue"
+        :next-floor="nextFloor"
+        :current-floor="currentFloor"
+        @addFloor="addFloor"
+    />
   </div>
 </template>
 
@@ -22,10 +28,8 @@ export default {
     return {
       floorCount: 5,
       elevatorCount: 1,
-
       currentFloor: 1,
       queue: [],
-      isCarFree: this.currentFloor === this.nextFloor,
       nextFloor: 1
     }
   },
@@ -34,19 +38,25 @@ export default {
       if (!this.queue.includes(number)) {
         this.queue.push(number)
       }
+    },
+    go (queue, current) {
+      if (current === this.nextFloor && queue.length) {
+        this.nextFloor = queue.shift();
+        setTimeout(() => {
+          this.currentFloor = this.nextFloor;
+        }, Math.abs(current - this.nextFloor)*1000 + 3000)
+      }
     }
   },
   watch: {
     queue: {
-      handler(n) {
-        if (this.isCarFree && n.length) {
-          this.nextFloor = n.shift();
-          setTimeout(() => {
-            this.currentFloor = this.nextFloor;
-          }, Math.abs(this.currentFloor - this.nextFloor)*1000)
-        }
+      handler(queue) {
+        this.go(queue, this.currentFloor);
       },
       deep: true
+    },
+    currentFloor(newValue) {
+      this.go(this.queue, newValue);
     }
   }
 }
