@@ -4,6 +4,7 @@
         :floor-count="floorCount"
         :current-floor="currentFloor"
         :next-floor="nextFloor"
+        :is-resting="isResting"
     />
     <hall
         :floor-count="floorCount"
@@ -26,11 +27,12 @@ export default {
   },
   data () {
     return {
-      floorCount: 5,
+      floorCount: 7,
       elevatorCount: 1,
       currentFloor: 1,
       queue: [],
-      nextFloor: 1
+      nextFloor: 1,
+      isResting: false
     }
   },
   methods: {
@@ -43,8 +45,12 @@ export default {
       if (current === this.nextFloor && queue.length) {
         this.nextFloor = queue.shift();
         setTimeout(() => {
-          this.currentFloor = this.nextFloor;
-        }, Math.abs(current - this.nextFloor)*1000 + 3000)
+          this.isResting = true;
+          setTimeout(() => {
+            this.currentFloor = this.nextFloor;
+            this.isResting = false;
+          },  3000)
+        }, Math.abs(current - this.nextFloor)*1000)
       }
     }
   },

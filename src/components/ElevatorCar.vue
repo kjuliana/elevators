@@ -2,6 +2,7 @@
   <div
       :style="'bottom:' + (nextFloor - 1)*151 + 'px; transition-duration: ' + Math.abs(nextFloor-currentFloor) + 's'"
       class="car"
+      :class="{'car-resting' : isResting}"
   >
     {{nextFloor !== currentFloor ? nextFloor : ''}}
   </div>
@@ -18,6 +19,7 @@ export default {
   props: {
     currentFloor: Number,
     nextFloor: Number,
+    isResting: Boolean
   },
   methods: {
 
@@ -33,5 +35,9 @@ export default {
     height: 151px;
     background-color: #0097a7;
     transition: bottom 3s ease-in-out;
+  }
+
+  .car-resting {
+    background-color: orange;
   }
 </style>

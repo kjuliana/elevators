@@ -4,6 +4,7 @@
     <elevator-car
         :current-floor="currentFloor"
         :next-floor="nextFloor"
+        :is-resting="isResting"
     />
   </div>
 </template>
@@ -21,7 +22,8 @@ export default {
   props: {
       floorCount:Number,
       currentFloor: Number,
-      nextFloor: Number
+      nextFloor: Number,
+      isResting: Boolean
   }
 
 }
