@@ -42,7 +42,6 @@ export default {
       }
     },
     go (queue, current) {
-      if (current === this.nextFloor && queue.length) {
         this.nextFloor = queue.shift();
         setTimeout(() => {
           this.isResting = true;
@@ -51,18 +50,21 @@ export default {
             this.isResting = false;
           },  3000)
         }, Math.abs(current - this.nextFloor)*1000)
-      }
     }
   },
   watch: {
     queue: {
       handler(queue) {
-        this.go(queue, this.currentFloor);
+        if (this.currentFloor === this.nextFloor && queue.length) {
+          this.go(queue, this.currentFloor);
+        }
       },
       deep: true
     },
     currentFloor(newValue) {
-      this.go(this.queue, newValue);
+      if (newValue === this.nextFloor && this.queue.length) {
+        this.go(this.queue, newValue);
+      }
     }
   }
 }
